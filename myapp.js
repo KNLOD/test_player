@@ -1,5 +1,5 @@
 
-import AccessButton from './accessButton.js';
+import {AccessButton} from './accessButton.js';
 
 var manifestUri =
     'https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd';
@@ -10,13 +10,12 @@ async function init() {
   const ui = video['ui'];
   console.log(ui);
   const controls = ui.getControls();
-  controls.registerElement('accessibility', new AccessButton.Factory());
+  shaka.ui.OverflowMenu.registerElement('accessibility', new AccessButton.Factory());
   const player = controls.getPlayer();
-
-const config = {
-  'overflowMenuButtons' : ['cast', 'quality', 'language', 'accessibility']
-}
-ui.configure(config);  
+  const config = {
+    'overflowMenuButtons' : ['cast', 'quality', 'language', 'accessibility']
+  }
+  ui.configure(config);  
 // Attach player and ui to the window to make it easy to access in the JS console.
   window.player = player;
   window.ui = ui;

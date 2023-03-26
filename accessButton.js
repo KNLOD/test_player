@@ -1,7 +1,6 @@
 // Не хочет тут импортироваться
-// import {ui as ShakaUI} from './shaka-player/dist/shaka-player.ui.js'
 
-export class AccessButton extends ShakaUI.Element {
+export class AccessButton extends shaka.ui.Element{
     constructor(parent, controls) {
         super(parent, controls);
 
@@ -17,9 +16,9 @@ export class AccessButton extends ShakaUI.Element {
 
 AccessButton.Factory = class {
     create(rootElement, controls) {
-        return new myapp.AccessButton(rootElement, controls);
+        return new AccessButton(rootElement, controls);
     }
 };
+shaka.ui.Controls.registerElement('accessibility', new AccessButton.Factory());
 
-ui.Controls.registerElement( 'accessibility', new AccessButton.Factory());
 
